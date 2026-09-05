@@ -1,0 +1,34 @@
+{
+  "merchant_id": "stride-lab",
+  "version": "1.0",
+  "currency": "INR",
+  "payment_provider": "razorpay_test",
+  "allowed_actions": [
+    {
+      "name": "search_catalog",
+      "method": "GET",
+      "path": "/catalog"
+    },
+    {
+      "name": "get_product",
+      "method": "GET",
+      "path": "/product/{id}"
+    },
+    {
+      "name": "add_to_cart",
+      "description": "Add a catalog item to the session cart. Always gated."
+    },
+    {
+      "name": "apply_coupon",
+      "description": "Declared for completeness; demo uses upsell, not coupons."
+    },
+    {
+      "name": "checkout",
+      "description": "Create a Razorpay test-mode order for the gated cart total."
+    }
+  ],
+  "policy": {
+    "money_decisions": "policy_gate_only",
+    "llm_may_not": ["approve_spend", "change_price", "bypass_stock"]
+  }
+}

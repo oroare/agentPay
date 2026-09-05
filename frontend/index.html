@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stride Lab — Agentic Checkout</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="bg"></div>
+  <header>
+    <div class="brand">
+      <span class="mark">SL</span>
+      <div>
+        <h1>Stride Lab</h1>
+        <p>Buyer agent · policy gate · Razorpay test mode</p>
+      </div>
+    </div>
+    <div class="pills">
+      <span>Money decisions = code</span>
+      <span>LLM = parsing only</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Human intent</h2>
+      <label>Goal
+        <textarea id="goal" rows="3">breathable running shoes under 3000</textarea>
+      </label>
+      <div class="row">
+        <label>Max spend (₹)
+          <input id="budget" type="number" value="3000" min="1" />
+        </label>
+        <label>Max upsell (₹)
+          <input id="upsellCap" type="number" value="500" min="1" />
+        </label>
+      </div>
+      <label class="check"><input id="enableUpsell" type="checkbox" checked /> Allow one bounded upsell</label>
+      <label class="check"><input id="simulateDecline" type="checkbox" /> Simulate Razorpay decline (failure demo)</label>
+      <button id="runBtn" type="button">Run agent session</button>
+      <p class="hint">Gate hard rule: cart + upsell ≤ max spend, and any upsell ≤ upsell cap. The model cannot override this.</p>
+      <div class="presets">
+        <button type="button" data-goal="breathable running shoes under 3000" data-budget="3000">Happy path</button>
+        <button type="button" data-goal="casual canvas sneakers under 2000" data-budget="2000">Casual</button>
+        <button type="button" data-goal="quantum hover boots under 50" data-budget="50">No match</button>
+        <button type="button" data-goal="AeroStride Runner and also the TrailPeak hiking shoe" data-budget="2000">Over-budget reject</button>
+      </div>
+    </section>
+
+    <section class="panel receipt">
+      <h2>Receipt</h2>
+      <div id="receipt" class="empty">Run a session to see the charge, lift, and payment ids.</div>
+    </section>
+  </main>
+
+  <section class="panel timeline-wrap">
+    <div class="timeline-head">
+      <h2>Unified audit trail</h2>
+      <span id="sessionMeta"></span>
+    </div>
+    <ol id="timeline" class="timeline"></ol>
+  </section>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

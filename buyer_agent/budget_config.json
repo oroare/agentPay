@@ -1,0 +1,6 @@
+{
+  "max_total_spend_inr": 3000,
+  "max_upsell_amount_inr": 500,
+  "max_upsell_items": 1,
+  "auto_confirm": true
+}
